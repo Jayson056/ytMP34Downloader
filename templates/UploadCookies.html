@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Cookies</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}" type="image/x-icon">
+    <style>
+        /* Root variables for color themes */
+        :root {
+            --bg-color-light: #f9f9f9;
+            --text-color-light: #333;
+            --bg-color-dark: #1c1c1c;
+            --text-color-dark: #f9f9f9;
+            --button-color: #ff5722;
+            --button-text-color: #fff;
+            --icon-color: #FF0000;
+        }
+        
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h1 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+            width: 90%;
+            max-width: 600px;
+        }
+        label, textarea, button {
+            margin: 10px 0;
+            width: 100%;
+            max-width: 500px;
+        }
+        textarea {
+            padding: 8px;
+            width: 100%;
+            max-width: 500px;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: monospace;
+            resize: vertical;
+        }
+        button, .switch-button {
+            padding: 10px 20px;
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        button:hover, .switch-button:hover {
+            background-color: #e64a19;
+        }
+
+        /* Light theme */
+        .light-theme {
+            --bg-color: var(--bg-color-light);
+            --text-color: var(--text-color-light);
+        }
+
+        /* Dark theme */
+        .dark-theme {
+            --bg-color: var(--bg-color-dark);
+            --text-color: var(--text-color-dark);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--button-color);
+        }
+
+        /* Credit section */
+        .credit {
+            margin-top: auto;
+            padding: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        .credit a {
+            color: var(--button-color);
+            text-decoration: none;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <h1>Update cookies.txt</h1>
+    <form action="/update-cookies" method="post">
+        <label for="cookies">Paste your cookies (Netscape format):</label>
+        <textarea name="cookies" id="cookies" placeholder="Paste your cookies here..." required></textarea><br>
+
+        <button type="submit">Update Cookies</button>
+    </form>
+
+    <form action="/" method="get">
+        <button type="submit" class="switch-button">Back to Main</button>
+    </form>
+
+    <div class="theme-toggle" onclick="toggleTheme()">Toggle Theme</div>
+
+    <div class="credit">
+        © 2024 by <a href="https://github.com/Jayson056" target="_blank">Jayson056</a>
+    </div>
+
+    <div class="instructions">
+        <h2>How to get your cookies in Netscape format:</h2>
+        <p>To get your cookies in the required Netscape format, you can use the <strong>Cookies Editor</strong> extension for your browser:</p>
+        <ol>
+            <li>Install the <a href="https://chrome.google.com/webstore/detail/cookies-editor/lfjkjfoolcbjofmjofpfocbgcnjmjiab" target="_blank">Cookies Editor</a> extension for Google Chrome (or your preferred browser).</li>
+            <li>After installation, click on the extension icon in your browser toolbar.</li>
+            <li>Navigate to the "Export" tab.</li>
+            <li>Select "Export as Netscape format".</li>
+            <li>Copy the exported cookies to your clipboard and paste them in the text area above.</li>
+        </ol>
+        <p>Once you paste the cookies, click "Update Cookies" to save them.</p>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const body = document.body;
+        function toggleTheme() {
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+            }
+        }
+    </script>
+</body>
+</html>

